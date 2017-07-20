@@ -14,7 +14,7 @@ import { render } from 'react-dom';
 import { createStore } from 'redux';
 
 //define reducer (todo - function with switch-case actions inside it)
-/*
+
 function todo( state = 0, action){
 
    
@@ -35,13 +35,13 @@ function todo( state = 0, action){
 
 //create store with reducer
 store = createStore( todo );
-*/
+
 
 var store;  // = createStore( this.todo );
 
 class App extends React.Component {
 
-
+/*
     // Reducer function    
     todo( state = 0, action){
         switch(action.type){
@@ -60,7 +60,7 @@ class App extends React.Component {
         console.log("React init function");
         store = createStore( this.todo ); 
     }
-
+*/
 
     //when button clicked , execute this function
     button_event_function(){
