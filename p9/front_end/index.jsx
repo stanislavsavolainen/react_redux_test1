@@ -31,8 +31,12 @@ const rest = reduxApi({
             headers: {
                 "Accept": "application/json",
                 'Content-Type': 'application/json'
-            }
+            },
         },
+        transformer(data, prevData) {
+            console.log("transformer called")
+            return { serverReply: data };
+        }
 
         //...
     }
@@ -41,10 +45,10 @@ const rest = reduxApi({
 }).use('fetch', adapterFetch(fetch));
 
 
-
-const mapStateToProps = state => {
-
-}
+//if many lines at mapStateTo props, then use return. Remember without return is ({ }) required 
+const mapStateToProps = state => ({
+    server_answer: state.api_reducer1.data
+})
 
 const mapDispatchToProps = dispatch => ({
 
@@ -80,7 +84,7 @@ class App extends React.Component {
         console.log("Use redux-api !");
 
         //reduxAPI dispatch api_reducer1
-       // rest.api_reducer1.d
+        // rest.api_reducer1.d
     }
 
     //get data from material-ui and store to reduxAPI reducer -> dispatch changes and send to server
@@ -140,6 +144,7 @@ class App extends React.Component {
                     </Toolbar>
                     <Toolbar style={{ backgroundColor: '#3CB371' }}>
                         <font color="blue"><h1> User profile data, after authenticated</h1></font>
+                        Server answer : {JSON.stringify(this.props.server_answer)}
                     </Toolbar>
 
                     {this.drawMultiData()}
@@ -174,4 +179,4 @@ render(
     <Provider store={store}>
         <ReduxApp />
     </Provider>
-, document.getElementById('app'));
+    , document.getElementById('app'));

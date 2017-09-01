@@ -21,7 +21,7 @@ server.route({
 	console.log("/hello POST-handler executed.");
 
         //return reply('hello world');
-	return reply(JSON.stringify('hello world'));
+	return reply(JSON.stringify({ body: 'hello world' }));
     }
 });
 
