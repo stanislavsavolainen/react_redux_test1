@@ -21,6 +21,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 //call reduxAPI for http-request
 const page_url = "http://127.0.0.1:5659";
 
+//var fieldValue = "not defined";
 
 //======== redux api reducers ==============
 const rest = reduxApi({
@@ -54,17 +55,21 @@ const mapDispatchToProps = dispatch => ({
 
     buttonReducerEvent() {
 
-        let postBody = { check: 'ok' };
+        //let postBody = { check: 'ok' };
+        let postBody = { check: fieldValue };
 
         dispatch(rest.actions.api_reducer1({}, { body: JSON.stringify(postBody) }));
+    },
+
+    fieldReducerEvent(fValue){
+
     }
+
 
 });
 
 //combinereducers = rest.reducers ????
 const store = createStore(combineReducers(rest.reducers), undefined, applyMiddleware(thunk));
-
-
 
 // -------- object1 ------------------------
 const data1 = {
@@ -134,7 +139,7 @@ class App extends React.Component {
             <div>
                 <AppBar style={{ backgroundColor: 'green' }}>
                     <Toolbar>
-                        Login :  <TextField style={{ color: 'green', backgroundColor: 'silver' }}></TextField>
+                        Login :  <TextField style={{ color: 'green', backgroundColor: 'silver' }}  onChange={ (event) =>  console.log(event.target.value)  }  ></TextField>
                     </Toolbar>
                     <Toolbar>
                         Password:  <TextField style={{ color: 'green', backgroundColor: 'silver' }} type="Password" ></TextField>

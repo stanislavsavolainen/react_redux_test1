@@ -18,7 +18,10 @@ server.route({
     path:'/link1', 
     handler: function (request, reply) {
 
-	console.log("/hello POST-handler executed.");
+    let x = request.payload.check;
+
+    console.log("/hello POST-handler executed.");
+    console.log("Message from client : " +x);
 
         //return reply('hello world');
 	return reply(JSON.stringify({ body: 'hello world' }));
